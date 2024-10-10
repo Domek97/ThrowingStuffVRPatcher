@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <TargetPlatformIdentifier>Windows</TargetPlatformIdentifier>
+    <ImplicitUsings>true</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Mutagen.Bethesda.Skyrim" Version="0.45+d317a483fa7ca9a93646172173b6325e4ef8735b" />
+    <PackageReference Include="Mutagen.Bethesda.Synthesis" Version="0.29.0+89b605477" />
+  </ItemGroup>
+</Project>
