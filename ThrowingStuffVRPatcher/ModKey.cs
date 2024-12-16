@@ -2,9 +2,16 @@
 
 using Mutagen.Bethesda.Plugins;
 
-namespace Mutagen.Bethesda.FormKeys.SkyrimSE;
+namespace Mutagen.Bethesda.FormKeys.SkyrimSE {
+    public static partial class ThrowStuff
+    {
+        public readonly static ModKey ModKey = ModKey.FromNameAndExtension("ThrowStuff.esp");
+    }
 
-public static partial class ThrowStuff
-{
-    public readonly static ModKey ModKey = ModKey.FromNameAndExtension("ThrowStuff.esp");
+    public static partial class Skyrim
+    {
+        public readonly static ModKey ModKey = ModKey.FromNameAndExtension("Skyrim.esm");
+    }
 }
+
+
