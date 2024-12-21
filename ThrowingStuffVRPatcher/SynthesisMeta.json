@@ -1,10 +1,12 @@
 {
   "Nickname": "",
   "Visibility": "Visible",
-  "OneLineDescription": "",
-  "LongDescription": "",
+  "OneLineDescription": "Patches mods to work with More Interactive Objects - Throwing Things VR Port",
+  "LongDescription": "Adds destruction to any Potions/Poisons in your load order, and any items specified in ThrowStuff_KID.ini",
   "PreferredAutoVersioning": "Default",
-  "RequiredMods": [],
+  "RequiredMods": [
+    "ThrowStuff.esp"
+  ],
   "TargetedReleases": [
     "SkyrimVR"
   ]
