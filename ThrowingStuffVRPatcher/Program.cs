@@ -160,7 +160,7 @@ namespace ThrowingStuffVRPatcher
                     {
                         foreach (string item in items)
                         {
-                            string itemName = item.Substring(item.LastIndexOf("|") + 1);
+                            string itemName = item.Substring(item.IndexOf("|", item.IndexOf("|") + 1) + 1);
                             string itemType = item.Substring(item.IndexOf("|") + 1, item.LastIndexOf("|") - item.IndexOf("|") - 1);
                             if (itemName.StartsWith("-"))
                             {
@@ -172,11 +172,11 @@ namespace ThrowingStuffVRPatcher
                         }
                         continue;
                     }
-                    else if (section.StartsWith("[D]MaterialGlass"))
+                    if (section.StartsWith("[D]MaterialGlass"))
                     {
                         foreach (string item in items)
                         {
-                            string itemName = item.Substring(item.LastIndexOf("|") + 1);
+                            string itemName = item.Substring(item.IndexOf("|", item.IndexOf("|") + 1) + 1);
                             string itemType = item.Substring(item.IndexOf("|") + 1, item.LastIndexOf("|") - item.IndexOf("|") - 1);
                             if (itemName.StartsWith("-"))
                             {
@@ -189,11 +189,11 @@ namespace ThrowingStuffVRPatcher
                         }
                         continue;
                     }
-                    else if (section.StartsWith("[D]isSoup"))
+                    if (section.StartsWith("[D]isSoup"))
                     {
                         foreach (string item in items)
                         {
-                            string itemName = item.Substring(item.LastIndexOf("|") + 1);
+                            string itemName = item.Substring(item.IndexOf("|", item.IndexOf("|") + 1) + 1);
                             string itemType = item.Substring(item.IndexOf("|") + 1, item.LastIndexOf("|") - item.IndexOf("|") - 1);
                             if (itemName.StartsWith("-"))
                             {
@@ -206,11 +206,11 @@ namespace ThrowingStuffVRPatcher
                         }
                         continue;
                     }
-                    else if (section.StartsWith("[D]WhiteDustBombBig"))
+                    if (section.StartsWith("[D]WhiteDustBombBig"))
                     {
                         foreach (string item in items)
                         {
-                            string itemName = item.Substring(item.LastIndexOf("|") + 1);
+                            string itemName = item.Substring(item.IndexOf("|", item.IndexOf("|") + 1) + 1);
                             string itemType = item.Substring(item.IndexOf("|") + 1, item.LastIndexOf("|") - item.IndexOf("|") - 1);
                             if (itemName.StartsWith("-"))
                             {
@@ -224,11 +224,11 @@ namespace ThrowingStuffVRPatcher
                         continue;
 
                     }
-                    else if (section.StartsWith("[D]WhiteDustBombSmall"))
+                    if (section.StartsWith("[D]WhiteDustBombSmall"))
                     {
                         foreach (string item in items)
                         {
-                            string itemName = item.Substring(item.LastIndexOf("|") + 1);
+                            string itemName = item.Substring(item.IndexOf("|", item.IndexOf("|") + 1) + 1);
                             string itemType = item.Substring(item.IndexOf("|") + 1, item.LastIndexOf("|") - item.IndexOf("|") - 1);
                             if (itemName.StartsWith("-"))
                             {
@@ -242,11 +242,11 @@ namespace ThrowingStuffVRPatcher
                         continue;
 
                     }
-                    else if (section.StartsWith("[D]BlackDustBombBig"))
+                    if (section.StartsWith("[D]BlackDustBombBig"))
                     {
                         foreach (string item in items)
                         {
-                            string itemName = item.Substring(item.LastIndexOf("|") + 1);
+                            string itemName = item.Substring(item.IndexOf("|", item.IndexOf("|") + 1) + 1);
                             string itemType = item.Substring(item.IndexOf("|") + 1, item.LastIndexOf("|") - item.IndexOf("|") - 1);
                             if (itemName.StartsWith("-"))
                             {
@@ -260,11 +260,11 @@ namespace ThrowingStuffVRPatcher
                         continue;
 
                     }
-                    else if (section.StartsWith("[D]BlackDustBombSmall"))
+                    if (section.StartsWith("[D]BlackDustBombSmall"))
                     {
                         foreach (string item in items)
                         {
-                            string itemName = item.Substring(item.LastIndexOf("|") + 1);
+                            string itemName = item.Substring(item.IndexOf("|", item.IndexOf("|") + 1) + 1);
                             string itemType = item.Substring(item.IndexOf("|") + 1, item.LastIndexOf("|") - item.IndexOf("|") - 1);
                             if (itemName.StartsWith("-"))
                             {
@@ -278,11 +278,11 @@ namespace ThrowingStuffVRPatcher
                         continue;
 
                     }
-                    else if (section.StartsWith("[D]PurseLarge"))
+                    if (section.StartsWith("[D]PurseLarge"))
                     {
                         foreach (string item in items)
                         {
-                            string itemName = item.Substring(item.LastIndexOf("|") + 1);
+                            string itemName = item.Substring(item.IndexOf("|", item.IndexOf("|") + 1) + 1);
                             string itemType = item.Substring(item.IndexOf("|") + 1, item.LastIndexOf("|") - item.IndexOf("|") - 1);
                             if (itemName.StartsWith("-"))
                             {
@@ -296,11 +296,11 @@ namespace ThrowingStuffVRPatcher
                         continue;
 
                     }
-                    else if (section.StartsWith("[D]nullWhite"))
+                    if (section.StartsWith("[D]nullWhite"))
                     {
                         foreach (string item in items)
                         {
-                            string itemName = item.Substring(item.LastIndexOf("|") + 1);
+                            string itemName = item.Substring(item.IndexOf("|", item.IndexOf("|") + 1) + 1);
                             string itemType = item.Substring(item.IndexOf("|") + 1, item.LastIndexOf("|") - item.IndexOf("|") - 1);
                             if (itemName.StartsWith("-"))
                             {
@@ -314,11 +314,11 @@ namespace ThrowingStuffVRPatcher
                         continue;
 
                     }
-                    else if (section.StartsWith("[D]FireBomb"))
+                    if (section.StartsWith("[D]FireBomb"))
                     {
                         foreach (string item in items)
                         {
-                            string itemName = item.Substring(item.LastIndexOf("|") + 1);
+                            string itemName = item.Substring(item.IndexOf("|", item.IndexOf("|") + 1) + 1);
                             string itemType = item.Substring(item.IndexOf("|") + 1, item.LastIndexOf("|") - item.IndexOf("|") - 1);
                             if (itemName.StartsWith("-"))
                             {
@@ -332,11 +332,11 @@ namespace ThrowingStuffVRPatcher
                         continue;
 
                     }
-                    else if (section.StartsWith("[D]OilBomb"))
+                    if (section.StartsWith("[D]OilBomb"))
                     {
                         foreach (string item in items)
                         {
-                            string itemName = item.Substring(item.LastIndexOf("|") + 1);
+                            string itemName = item.Substring(item.IndexOf("|", item.IndexOf("|") + 1) + 1);
                             string itemType = item.Substring(item.IndexOf("|") + 1, item.LastIndexOf("|") - item.IndexOf("|") - 1);
                             if (itemName.StartsWith("-"))
                             {
@@ -350,11 +350,11 @@ namespace ThrowingStuffVRPatcher
                         continue;
 
                     }
-                    else if (section.StartsWith("[D]FrostBomb"))
+                    if (section.StartsWith("[D]FrostBomb"))
                     {
                         foreach (string item in items)
                         {
-                            string itemName = item.Substring(item.LastIndexOf("|") + 1);
+                            string itemName = item.Substring(item.IndexOf("|", item.IndexOf("|") + 1) + 1);
                             string itemType = item.Substring(item.IndexOf("|") + 1, item.LastIndexOf("|") - item.IndexOf("|") - 1);
                             if (itemName.StartsWith("-"))
                             {
@@ -368,11 +368,11 @@ namespace ThrowingStuffVRPatcher
                         continue;
 
                     }
-                    else if (section.StartsWith("[D]ShockBomb"))
+                    if (section.StartsWith("[D]ShockBomb"))
                     {
                         foreach (string item in items)
                         {
-                            string itemName = item.Substring(item.LastIndexOf("|") + 1);
+                            string itemName = item.Substring(item.IndexOf("|", item.IndexOf("|") + 1) + 1);
                             string itemType = item.Substring(item.IndexOf("|") + 1, item.LastIndexOf("|") - item.IndexOf("|") - 1);
                             if (itemName.StartsWith("-"))
                             {
@@ -386,11 +386,11 @@ namespace ThrowingStuffVRPatcher
                         continue;
 
                     }
-                    else if (section.StartsWith("[D]PoisonBomb"))
+                    if (section.StartsWith("[D]PoisonBomb"))
                     {
                         foreach (string item in items)
                         {
-                            string itemName = item.Substring(item.LastIndexOf("|") + 1);
+                            string itemName = item.Substring(item.IndexOf("|", item.IndexOf("|") + 1) + 1);
                             string itemType = item.Substring(item.IndexOf("|") + 1, item.LastIndexOf("|") - item.IndexOf("|") - 1);
                             if (itemName.StartsWith("-"))
                             {
@@ -404,11 +404,11 @@ namespace ThrowingStuffVRPatcher
                         continue;
 
                     }
-                    else if (section.StartsWith("[D]isPotion"))
+                    if (section.StartsWith("[D]isPotion"))
                     {
                         foreach (string item in items)
                         {
-                            string itemName = item.Substring(item.LastIndexOf("|") + 1);
+                            string itemName = item.Substring(item.IndexOf("|", item.IndexOf("|") + 1) + 1);
                             string itemType = item.Substring(item.IndexOf("|") + 1, item.LastIndexOf("|") - item.IndexOf("|") - 1);
                             if (itemName.StartsWith("-"))
                             {
@@ -422,11 +422,11 @@ namespace ThrowingStuffVRPatcher
                         continue;
 
                     }
-                    else if (section.StartsWith("[D]IsPoison"))
+                    if (section.StartsWith("[D]IsPoison"))
                     {
                         foreach (string item in items)
                         {
-                            string itemName = item.Substring(item.LastIndexOf("|") + 1);
+                            string itemName = item.Substring(item.IndexOf("|", item.IndexOf("|") + 1) + 1);
                             string itemType = item.Substring(item.IndexOf("|") + 1, item.LastIndexOf("|") - item.IndexOf("|") - 1);
                             if (itemName.StartsWith("-"))
                             {
