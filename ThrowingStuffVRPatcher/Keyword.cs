@@ -27,6 +27,6 @@ public static partial class ThrowStuff
     {
         private static FormLink<IKeywordGetter> Construct(uint id) => new FormLink<IKeywordGetter>(ModKey.MakeFormKey(id));
 
-        public static FormLink<IKeywordGetter> onmoPurse => Construct(0xaa04);
+        public static FormLink<IKeywordGetter> onmoPurse => Construct(0x802);
     }
 }
