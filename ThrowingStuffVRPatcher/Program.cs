@@ -495,7 +495,7 @@ namespace ThrowingStuffVRPatcher
             {
                 bool addedDestruction = false;
                     var ingestible = state.PatchMod.Ingestibles.GetOrAddAsOverride(ingestibleGetter.Record);
-                if (ingestible.ToLinkGetter().TryResolveContext<ISkyrimMod, ISkyrimModGetter, IIngestible, IIngestibleGetter>(state.LinkCache, out var context))
+                if (ingestible.ToLinkGetter().TryResolveContext<ISkyrimMod, ISkyrimModGetter, IIngestible, IIngestibleGetter>(state.LinkCache, out var context) && ingestible.Destructible == null)
                 {
                     foreach (var keyword in ingestible.Keywords.EmptyIfNull())
                     {
@@ -537,8 +537,10 @@ namespace ThrowingStuffVRPatcher
             foreach (var ingredientGetter in state.LoadOrder.PriorityOrder.Ingredient().WinningContextOverrides())
             {
                 var ingredient = state.PatchMod.Ingredients.GetOrAddAsOverride(ingredientGetter.Record);
-
-                patchINIitems(ingredient, ingredientGetter.ModKey, program);
+                if (ingredient.Destructible == null)
+                {
+                    patchINIitems(ingredient, ingredientGetter.ModKey, program);
+                }
             }
 
             // patch misc items
@@ -546,7 +548,10 @@ namespace ThrowingStuffVRPatcher
             {
                 var miscItem = state.PatchMod.MiscItems.GetOrAddAsOverride(miscItemGetter.Record);
 
-                patchINIitems(miscItem, miscItemGetter.ModKey, program);
+                if (miscItem.Destructible == null)
+                {
+                    patchINIitems(miscItem, miscItemGetter.ModKey, program);
+                }
             }
         }
 
