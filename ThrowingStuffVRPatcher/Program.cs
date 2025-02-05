@@ -451,37 +451,42 @@ namespace ThrowingStuffVRPatcher
 
             //////////////////////////////////////////////////////////
             // Begin patch
-
             // patch onmo coin purse
             foreach (var floraGetter in state.LoadOrder.PriorityOrder.Flora().WinningContextOverrides())
             {
-                if (floraGetter.ModKey == "DropOnDeath.esp")
+                if (floraGetter.ModKey == "DropOnDeath.esp" || floraGetter.ModKey == "JS Purses and Septims SE Patch.esp")
                 {
                     var flora = state.PatchMod.Florae.GetOrAddAsOverride(floraGetter.Record);
 
                     addDestruction(flora);
-                    
+
                     if (flora.Keywords == null)
                     {
                         flora.Keywords = new ExtendedList<IFormLinkGetter<IKeywordGetter>>();
                     }
 
-                    flora.Keywords?.Add(ThrowStuff.Keyword.onmoPurse);
-
-                    if (flora.Keywords.EmptyIfNull().Contains(ThrowStuff.Keyword.onmoPurse))
+                    if (floraGetter.ModKey == "DropOnDeath.esp")
                     {
-                        Console.WriteLine("Added keyword \"" + ThrowStuff.Keyword.onmoPurse.ResolveIdentifier(state.LinkCache) + "\" to " + flora?.Name);
-                    } else
-                    {
-                        Console.WriteLine("Failed to add keyword \"" + ThrowStuff.Keyword.onmoPurse.ToString() + "\" to " + flora?.Name);
+                        flora.Keywords?.Add(ThrowStuff.Keyword.onmoPurse);
+                        if (flora.Keywords.EmptyIfNull().Contains(ThrowStuff.Keyword.onmoPurse))
+                        {
+                            Console.WriteLine("Added keyword \"" + ThrowStuff.Keyword.onmoPurse.ResolveIdentifier(state.LinkCache) + "\" to " + flora?.Name);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Failed to add keyword \"" + ThrowStuff.Keyword.onmoPurse.ToString() + "\" to " + flora?.Name);
+                        }
                     }
+
                     if (flora?.Destructible?.Stages.Count == 8)
                     {
                         Console.WriteLine("Added destruction to \"" + flora?.Name + "\" from " + floraGetter.ModKey);
-                    } else
+                    }
+                    else
                     {
                         Console.WriteLine("Failed to add destruction to Potion/Poison \"" + flora?.Name + "\" from " + floraGetter.ModKey);
                     }
+
                 }
             }
 
