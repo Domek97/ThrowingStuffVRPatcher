@@ -145,7 +145,7 @@ namespace ThrowingStuffVRPatcher
 
             try
             {
-                Console.WriteLine("Trying to read ThrowStuff_KID.ini from " + state.DataFolderPath);
+                Console.WriteLine("\n\nTrying to read ThrowStuff_KID.ini from " + state.DataFolderPath);
                 using StreamReader reader = new(state.DataFolderPath + "\\ThrowStuff_KID.ini");
                 Console.WriteLine("Found ThrowStuff_KID.ini");
                 string text = reader.ReadToEnd();
