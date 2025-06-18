@@ -5,32 +5,50 @@ using Mutagen.Bethesda.Plugins;
 using Noggog;
 using Mutagen.Bethesda.FormKeys.SkyrimSE;
 using System.Text.RegularExpressions;
+using Mutagen.Bethesda.Plugins.Aspects;
 
 namespace ThrowingStuffVRPatcher
 {
     public class Program
     {
-        IEnumerable<DestructionStage>? destructionStages;
-        Dictionary<string, string> alcoholDict = new Dictionary<string, string>();
-        Dictionary<string, string> glassDict = new Dictionary<string, string>();
-        Dictionary<string, string> soupDict = new Dictionary<string, string>();
-        Dictionary<string, string> whiteBombBigDict = new Dictionary<string, string>();
-        Dictionary<string, string> whiteBombSmallDict = new Dictionary<string, string>();
-        Dictionary<string, string> blackBombBigDict = new Dictionary<string, string>();
-        Dictionary<string, string> blackBombSmallDict = new Dictionary<string, string>();
-        Dictionary<string, string> purseDict = new Dictionary<string, string>();
-        Dictionary<string, string> nullwhiteDict = new Dictionary<string, string>();
-        Dictionary<string, string> firebombDict = new Dictionary<string, string>();
-        Dictionary<string, string> oilbombDict = new Dictionary<string, string>();
-        Dictionary<string, string> frostbombDict = new Dictionary<string, string>();
-        Dictionary<string, string> shockbombDict = new Dictionary<string, string>();
-        Dictionary<string, string> poisonbombDict = new Dictionary<string, string>();
-        Dictionary<string, string> potionDict = new Dictionary<string, string>();
-        Dictionary<string, string> poisonDict = new Dictionary<string, string>();
-        Dictionary<string, string> exclusionsDict = new Dictionary<string, string>();
+        public static IEnumerable<DestructionStage>? destructionStages;
+        public static Dictionary<string, string> alcoholDict;
+        public static Dictionary<string, string> glassDict;
+        public static Dictionary<string, string> soupDict;
+        public static Dictionary<string, string> whiteBombBigDict;
+        public static Dictionary<string, string> whiteBombSmallDict;
+        public static Dictionary<string, string> blackBombBigDict;
+        public static Dictionary<string, string> blackBombSmallDict;
+        public static Dictionary<string, string> purseDict;
+        public static Dictionary<string, string> nullwhiteDict;
+        public static Dictionary<string, string> firebombDict;
+        public static Dictionary<string, string> oilbombDict;
+        public static Dictionary<string, string> frostbombDict;
+        public static Dictionary<string, string> shockbombDict;
+        public static Dictionary<string, string> poisonbombDict;
+        public static Dictionary<string, string> potionDict;
+        public static Dictionary<string, string> poisonDict;
+        public static Dictionary<string, string> exclusionsDict;
 
-        public Program()
-        {
+        static Program() {
+            // Set the static members
+            alcoholDict = new Dictionary<string, string>(); 
+            glassDict = new Dictionary<string, string>(); 
+            soupDict = new Dictionary<string, string>(); 
+            whiteBombBigDict = new Dictionary<string, string>(); 
+            whiteBombSmallDict = new Dictionary<string, string>(); 
+            blackBombBigDict = new Dictionary<string, string>(); 
+            blackBombSmallDict = new Dictionary<string, string>(); 
+            purseDict = new Dictionary<string, string>(); 
+            nullwhiteDict = new Dictionary<string, string>(); 
+            firebombDict = new Dictionary<string, string>(); 
+            oilbombDict = new Dictionary<string, string>(); 
+            frostbombDict = new Dictionary<string, string>(); 
+            shockbombDict = new Dictionary<string, string>(); 
+            poisonbombDict = new Dictionary<string, string>(); 
+            potionDict = new Dictionary<string, string>(); 
+            poisonDict = new Dictionary<string, string>();
+            exclusionsDict = new Dictionary<string, string>();
 
             /////////////////////////////////////////////////////////
             // Destruction Stages
@@ -141,8 +159,6 @@ namespace ThrowingStuffVRPatcher
             ////////////////////////////////////////////////////////
             // Read from ThrowStuff_KID.ini
 
-            Program program = new Program();
-
             try
             {
                 Console.WriteLine("\n\nTrying to read ThrowStuff_KID.ini from " + state.DataFolderPath);
@@ -164,10 +180,10 @@ namespace ThrowingStuffVRPatcher
                             string itemType = item.Substring(item.IndexOf("|") + 1, item.LastIndexOf("|") - item.IndexOf("|") - 1);
                             if (itemName.StartsWith("-"))
                             {
-                                program.exclusionsDict.Add(Regex.Replace(itemName, "-", "").ToLower(), "Alcohol");
+                                Program.exclusionsDict.Add(Regex.Replace(itemName, "-", "").ToLower(), "Alcohol");
                             } else
                             {
-                                program.alcoholDict.Add(itemName, itemType);
+                                Program.alcoholDict.Add(itemName, itemType);
                             }
                         }
                         continue;
@@ -180,11 +196,11 @@ namespace ThrowingStuffVRPatcher
                             string itemType = item.Substring(item.IndexOf("|") + 1, item.LastIndexOf("|") - item.IndexOf("|") - 1);
                             if (itemName.StartsWith("-"))
                             {
-                                program.exclusionsDict.Add(Regex.Replace(itemName, "-", "").ToLower(), "MaterialGlass");
+                                Program.exclusionsDict.Add(Regex.Replace(itemName, "-", "").ToLower(), "MaterialGlass");
                             }
                             else
                             {
-                                program.glassDict.Add(itemName, itemType);
+                                Program.glassDict.Add(itemName, itemType);
                             }
                         }
                         continue;
@@ -197,11 +213,11 @@ namespace ThrowingStuffVRPatcher
                             string itemType = item.Substring(item.IndexOf("|") + 1, item.LastIndexOf("|") - item.IndexOf("|") - 1);
                             if (itemName.StartsWith("-"))
                             {
-                                program.exclusionsDict.Add(Regex.Replace(itemName, "-", "").ToLower(), "isSoup");
+                                Program.exclusionsDict.Add(Regex.Replace(itemName, "-", "").ToLower(), "isSoup");
                             }
                             else
                             {
-                                program.soupDict.Add(itemName, itemType);
+                                Program.soupDict.Add(itemName, itemType);
                             }
                         }
                         continue;
@@ -214,11 +230,11 @@ namespace ThrowingStuffVRPatcher
                             string itemType = item.Substring(item.IndexOf("|") + 1, item.LastIndexOf("|") - item.IndexOf("|") - 1);
                             if (itemName.StartsWith("-"))
                             {
-                                program.exclusionsDict.Add(Regex.Replace(itemName, "-", "").ToLower(), "WhiteDustBombBig");
+                                Program.exclusionsDict.Add(Regex.Replace(itemName, "-", "").ToLower(), "WhiteDustBombBig");
                             }
                             else
                             {
-                                program.whiteBombBigDict.Add(itemName, itemType);
+                                Program.whiteBombBigDict.Add(itemName, itemType);
                             }
                         }
                         continue;
@@ -232,11 +248,11 @@ namespace ThrowingStuffVRPatcher
                             string itemType = item.Substring(item.IndexOf("|") + 1, item.LastIndexOf("|") - item.IndexOf("|") - 1);
                             if (itemName.StartsWith("-"))
                             {
-                                program.exclusionsDict.Add(Regex.Replace(itemName, "-", "").ToLower(), "WhiteDustBombSmall");
+                                Program.exclusionsDict.Add(Regex.Replace(itemName, "-", "").ToLower(), "WhiteDustBombSmall");
                             }
                             else
                             {
-                                program.whiteBombSmallDict.Add(itemName, itemType);
+                                Program.whiteBombSmallDict.Add(itemName, itemType);
                             }
                         }
                         continue;
@@ -250,11 +266,11 @@ namespace ThrowingStuffVRPatcher
                             string itemType = item.Substring(item.IndexOf("|") + 1, item.LastIndexOf("|") - item.IndexOf("|") - 1);
                             if (itemName.StartsWith("-"))
                             {
-                                program.exclusionsDict.Add(Regex.Replace(itemName, "-", "").ToLower(), "BlackDustBombBig");
+                                Program.exclusionsDict.Add(Regex.Replace(itemName, "-", "").ToLower(), "BlackDustBombBig");
                             }
                             else
                             {
-                                program.blackBombBigDict.Add(itemName, itemType);
+                                Program.blackBombBigDict.Add(itemName, itemType);
                             }
                         }
                         continue;
@@ -268,11 +284,11 @@ namespace ThrowingStuffVRPatcher
                             string itemType = item.Substring(item.IndexOf("|") + 1, item.LastIndexOf("|") - item.IndexOf("|") - 1);
                             if (itemName.StartsWith("-"))
                             {
-                                program.exclusionsDict.Add(Regex.Replace(itemName, "-", "").ToLower(), "BlackDustBombSmall");
+                                Program.exclusionsDict.Add(Regex.Replace(itemName, "-", "").ToLower(), "BlackDustBombSmall");
                             }
                             else
                             {
-                                program.blackBombSmallDict.Add(itemName, itemType);
+                                Program.blackBombSmallDict.Add(itemName, itemType);
                             }
                         }
                         continue;
@@ -286,11 +302,11 @@ namespace ThrowingStuffVRPatcher
                             string itemType = item.Substring(item.IndexOf("|") + 1, item.LastIndexOf("|") - item.IndexOf("|") - 1);
                             if (itemName.StartsWith("-"))
                             {
-                                program.exclusionsDict.Add(Regex.Replace(itemName, "-", "").ToLower(), "PurseLarge");
+                                Program.exclusionsDict.Add(Regex.Replace(itemName, "-", "").ToLower(), "PurseLarge");
                             }
                             else
                             {
-                                program.purseDict.Add(itemName, itemType);
+                                Program.purseDict.Add(itemName, itemType);
                             }
                         }
                         continue;
@@ -304,11 +320,11 @@ namespace ThrowingStuffVRPatcher
                             string itemType = item.Substring(item.IndexOf("|") + 1, item.LastIndexOf("|") - item.IndexOf("|") - 1);
                             if (itemName.StartsWith("-"))
                             {
-                                program.exclusionsDict.Add(Regex.Replace(itemName, "-", "").ToLower(), "nullWhite");
+                                Program.exclusionsDict.Add(Regex.Replace(itemName, "-", "").ToLower(), "nullWhite");
                             }
                             else
                             {
-                                program.nullwhiteDict.Add(itemName, itemType);
+                                Program.nullwhiteDict.Add(itemName, itemType);
                             }
                         }
                         continue;
@@ -322,11 +338,11 @@ namespace ThrowingStuffVRPatcher
                             string itemType = item.Substring(item.IndexOf("|") + 1, item.LastIndexOf("|") - item.IndexOf("|") - 1);
                             if (itemName.StartsWith("-"))
                             {
-                                program.exclusionsDict.Add(Regex.Replace(itemName, "-", "").ToLower(), "FireBomb");
+                                Program.exclusionsDict.Add(Regex.Replace(itemName, "-", "").ToLower(), "FireBomb");
                             }
                             else
                             {
-                                program.firebombDict.Add(itemName, itemType);
+                                Program.firebombDict.Add(itemName, itemType);
                             }
                         }
                         continue;
@@ -340,11 +356,11 @@ namespace ThrowingStuffVRPatcher
                             string itemType = item.Substring(item.IndexOf("|") + 1, item.LastIndexOf("|") - item.IndexOf("|") - 1);
                             if (itemName.StartsWith("-"))
                             {
-                                program.exclusionsDict.Add(Regex.Replace(itemName, "-", "").ToLower(), "OilBomb");
+                                Program.exclusionsDict.Add(Regex.Replace(itemName, "-", "").ToLower(), "OilBomb");
                             }
                             else
                             {
-                                program.oilbombDict.Add(itemName, itemType);
+                                Program.oilbombDict.Add(itemName, itemType);
                             }
                         }
                         continue;
@@ -358,11 +374,11 @@ namespace ThrowingStuffVRPatcher
                             string itemType = item.Substring(item.IndexOf("|") + 1, item.LastIndexOf("|") - item.IndexOf("|") - 1);
                             if (itemName.StartsWith("-"))
                             {
-                                program.exclusionsDict.Add(Regex.Replace(itemName, "-", "").ToLower(), "FrostBomb");
+                                Program.exclusionsDict.Add(Regex.Replace(itemName, "-", "").ToLower(), "FrostBomb");
                             }
                             else
                             {
-                                program.frostbombDict.Add(itemName, itemType);
+                                Program.frostbombDict.Add(itemName, itemType);
                             }
                         }
                         continue;
@@ -376,11 +392,11 @@ namespace ThrowingStuffVRPatcher
                             string itemType = item.Substring(item.IndexOf("|") + 1, item.LastIndexOf("|") - item.IndexOf("|") - 1);
                             if (itemName.StartsWith("-"))
                             {
-                                program.exclusionsDict.Add(Regex.Replace(itemName, "-", "").ToLower(), "ShockBomb");
+                                Program.exclusionsDict.Add(Regex.Replace(itemName, "-", "").ToLower(), "ShockBomb");
                             }
                             else
                             {
-                                program.shockbombDict.Add(itemName, itemType);
+                                Program.shockbombDict.Add(itemName, itemType);
                             }
                         }
                         continue;
@@ -394,11 +410,11 @@ namespace ThrowingStuffVRPatcher
                             string itemType = item.Substring(item.IndexOf("|") + 1, item.LastIndexOf("|") - item.IndexOf("|") - 1);
                             if (itemName.StartsWith("-"))
                             {
-                                program.exclusionsDict.Add(Regex.Replace(itemName, "-", "").ToLower(), "PoisonBomb");
+                                Program.exclusionsDict.Add(Regex.Replace(itemName, "-", "").ToLower(), "PoisonBomb");
                             }
                             else
                             {
-                                program.poisonbombDict.Add(itemName, itemType);
+                                Program.poisonbombDict.Add(itemName, itemType);
                             }
                         }
                         continue;
@@ -412,11 +428,11 @@ namespace ThrowingStuffVRPatcher
                             string itemType = item.Substring(item.IndexOf("|") + 1, item.LastIndexOf("|") - item.IndexOf("|") - 1);
                             if (itemName.StartsWith("-"))
                             {
-                                program.exclusionsDict.Add(Regex.Replace(itemName, "-", "").ToLower(), "isPotion");
+                                Program.exclusionsDict.Add(Regex.Replace(itemName, "-", "").ToLower(), "isPotion");
                             }
                             else
                             {
-                                program.potionDict.Add(itemName, itemType);
+                                Program.potionDict.Add(itemName, itemType);
                             }
                         }
                         continue;
@@ -430,11 +446,11 @@ namespace ThrowingStuffVRPatcher
                             string itemType = item.Substring(item.IndexOf("|") + 1, item.LastIndexOf("|") - item.IndexOf("|") - 1);
                             if (itemName.StartsWith("-"))
                             {
-                                program.exclusionsDict.Add(Regex.Replace(itemName, "-", "").ToLower(), "IsPoison");
+                                Program.exclusionsDict.Add(Regex.Replace(itemName, "-", "").ToLower(), "IsPoison");
                             }
                             else
                             {
-                                program.poisonDict.Add(itemName, itemType);
+                                Program.poisonDict.Add(itemName, itemType);
                             }
                         }
                         continue;
@@ -460,10 +476,7 @@ namespace ThrowingStuffVRPatcher
 
                     addDestruction(flora);
 
-                    if (flora.Keywords == null)
-                    {
-                        flora.Keywords = new ExtendedList<IFormLinkGetter<IKeywordGetter>>();
-                    }
+                    flora.Keywords ??= new();
 
                     if (floraGetter.ModKey == "DropOnDeath.esp")
                     {
@@ -495,7 +508,7 @@ namespace ThrowingStuffVRPatcher
             {
                 bool addedDestruction = false;
                     var ingestible = state.PatchMod.Ingestibles.GetOrAddAsOverride(ingestibleGetter.Record);
-                if (ingestible.ToLinkGetter().TryResolveContext<ISkyrimMod, ISkyrimModGetter, IIngestible, IIngestibleGetter>(state.LinkCache, out var context) && ingestible.Destructible == null)
+                if (ingestible.Destructible == null)
                 {
                     foreach (var keyword in ingestible.Keywords.EmptyIfNull())
                     {
@@ -528,7 +541,7 @@ namespace ThrowingStuffVRPatcher
                     // Everything else
                     if (!addedDestruction)
                     {
-                        patchINIitems(ingestible, ingestibleGetter.ModKey, program);
+                        patchINIitems(ingestible, ingestibleGetter.ModKey);
                     }
                 }
             }
@@ -539,7 +552,7 @@ namespace ThrowingStuffVRPatcher
                 var ingredient = state.PatchMod.Ingredients.GetOrAddAsOverride(ingredientGetter.Record);
                 if (ingredient.Destructible == null)
                 {
-                    patchINIitems(ingredient, ingredientGetter.ModKey, program);
+                    patchINIitems(ingredient, ingredientGetter.ModKey);
                 }
             }
 
@@ -550,29 +563,27 @@ namespace ThrowingStuffVRPatcher
 
                 if (miscItem.Destructible == null)
                 {
-                    patchINIitems(miscItem, miscItemGetter.ModKey, program);
+                    patchINIitems(miscItem, miscItemGetter.ModKey);
                 }
             }
         }
 
         static void addDestruction(dynamic myObject)
         {
-            var program = new Program();
             myObject.Destructible = new Destructible();
             myObject.Destructible.Data = new DestructableData();
             myObject.Destructible.Data.Health = 8;
             myObject.Destructible.Data.DESTCount = 8;
-
-            myObject.Destructible.Stages.AddRange(program.destructionStages.EmptyIfNull());
+            myObject.Destructible.Stages.AddRange(Program.destructionStages.EmptyIfNull());
 
         }
 
-        static void patchINIitems(dynamic myObject, ModKey modKey, Program program)
+        static void patchINIitems<T>(T myObject, ModKey modKey)
+            where T : INamedGetter, ISkyrimMajorRecordGetter, IHasDestructible
         {
 
             #if DEBUG
-            if (myObject.Name?.String != null)
-                if (myObject.Name.String.ToLower().Contains("flour"))
+                if (myObject.Name?.Contains("flour", StringComparison.OrdinalIgnoreCase) ?? false)
                     System.Diagnostics.Debugger.Break();
             #endif
             string type = myObject.GetType().ToString().Substring(myObject.GetType().ToString().LastIndexOf(".") + 1);
@@ -587,8 +598,8 @@ namespace ThrowingStuffVRPatcher
             }
 
             // Patch Alcohol
-            if (program.alcoholDict.Any(alcohol => 
-                isValidObject(program, alcohol, myObject, type, "Alcohol")))
+            if (Program.alcoholDict.Any(alcohol => 
+                isValidObject(alcohol, myObject, type, "Alcohol")))
             {
                 addDestruction(myObject);
                 if (myObject.Destructible?.Stages.Count == 8)
@@ -604,8 +615,8 @@ namespace ThrowingStuffVRPatcher
             }
 
             // Patch Glass
-            if (program.glassDict.Any(glass =>
-            isValidObject(program, glass, myObject, type, "MaterialGlass")))
+            if (Program.glassDict.Any(glass =>
+            isValidObject(glass, myObject, type, "MaterialGlass")))
             {
                 addDestruction(myObject);
                 if (myObject?.Destructible?.Stages.Count == 8)
@@ -620,8 +631,8 @@ namespace ThrowingStuffVRPatcher
             }
 
             // Patch soups
-            if (program.soupDict.Any(soup =>
-                isValidObject(program, soup, myObject, type, "isSoup")))
+            if (Program.soupDict.Any(soup =>
+                isValidObject(soup, myObject, type, "isSoup")))
             {
                 addDestruction(myObject);
                 if (myObject?.Destructible?.Stages.Count == 8)
@@ -637,8 +648,8 @@ namespace ThrowingStuffVRPatcher
             }
 
             // Patch WhiteDustBombBig
-            if (program.whiteBombBigDict.Any(bomb =>
-                isValidObject(program, bomb, myObject, type, "WhiteDustBombBig")))
+            if (Program.whiteBombBigDict.Any(bomb =>
+                isValidObject(bomb, myObject, type, "WhiteDustBombBig")))
             {
                 addDestruction(myObject);
                 if (myObject?.Destructible?.Stages.Count == 8)
@@ -654,8 +665,8 @@ namespace ThrowingStuffVRPatcher
             }
 
             // Patch WhiteDustBombSmall
-            if (program.whiteBombSmallDict.Any(bomb =>
-                isValidObject(program, bomb, myObject, type, "WhiteDustBombSmall")))
+            if (Program.whiteBombSmallDict.Any(bomb =>
+                isValidObject(bomb, myObject, type, "WhiteDustBombSmall")))
             {
                 addDestruction(myObject);
                 if (myObject?.Destructible?.Stages.Count == 8)
@@ -671,8 +682,8 @@ namespace ThrowingStuffVRPatcher
             }
 
             // Patch BlackDustBombBig
-            if (program.blackBombBigDict.Any(bomb =>
-                isValidObject(program, bomb, myObject, type, "BlackDustBombBig")))
+            if (Program.blackBombBigDict.Any(bomb =>
+                isValidObject(bomb, myObject, type, "BlackDustBombBig")))
             {
                 addDestruction(myObject);
                 if (myObject?.Destructible?.Stages.Count == 8)
@@ -688,8 +699,8 @@ namespace ThrowingStuffVRPatcher
             }
 
             // Patch BlackDustBombSmall
-            if (program.blackBombSmallDict.Any(bomb =>
-                isValidObject(program, bomb, myObject, type, "BlackDustBombSmall")))
+            if (Program.blackBombSmallDict.Any(bomb =>
+                isValidObject(bomb, myObject, type, "BlackDustBombSmall")))
             {
                 addDestruction(myObject);
                 if (myObject?.Destructible?.Stages.Count == 8)
@@ -705,8 +716,8 @@ namespace ThrowingStuffVRPatcher
             }
 
             // Patch Coin purses
-            if (program.purseDict.Any(purse =>
-                isValidObject(program, purse, myObject, type, "PurseLarge")))
+            if (Program.purseDict.Any(purse =>
+                isValidObject(purse, myObject, type, "PurseLarge")))
             {
                 addDestruction(myObject);
                 if (myObject?.Destructible?.Stages.Count == 8)
@@ -722,8 +733,8 @@ namespace ThrowingStuffVRPatcher
             }
 
             // Patch nullWhite
-            if (program.nullwhiteDict.Any(bomb =>
-                isValidObject(program, bomb, myObject, type, "nullWhite")))
+            if (Program.nullwhiteDict.Any(bomb =>
+                isValidObject(bomb, myObject, type, "nullWhite")))
             {
                 addDestruction(myObject);
                 if (myObject?.Destructible?.Stages.Count == 8)
@@ -739,8 +750,8 @@ namespace ThrowingStuffVRPatcher
             }
 
             // Patch Firebomb
-            if (program.firebombDict.Any(bomb =>
-                isValidObject(program, bomb, myObject, type, "FireBomb")))
+            if (Program.firebombDict.Any(bomb =>
+                isValidObject(bomb, myObject, type, "FireBomb")))
             {
                 addDestruction(myObject);
                 if (myObject?.Destructible?.Stages.Count == 8)
@@ -756,8 +767,8 @@ namespace ThrowingStuffVRPatcher
             }
 
             // Patch Oilbomb
-            if (program.oilbombDict.Any(bomb =>
-                isValidObject(program, bomb, myObject, type, "OilBomb")))
+            if (Program.oilbombDict.Any(bomb =>
+                isValidObject(bomb, myObject, type, "OilBomb")))
             {
                 addDestruction(myObject);
                 if (myObject?.Destructible?.Stages.Count == 8)
@@ -773,8 +784,8 @@ namespace ThrowingStuffVRPatcher
             }
 
             // Patch Frostbomb
-            if (program.frostbombDict.Any(bomb =>
-                isValidObject(program, bomb, myObject, type, "FrostBomb")))
+            if (Program.frostbombDict.Any(bomb =>
+                isValidObject(bomb, myObject, type, "FrostBomb")))
             {
                 addDestruction(myObject);
                 if (myObject?.Destructible?.Stages.Count == 8)
@@ -790,8 +801,8 @@ namespace ThrowingStuffVRPatcher
             }
 
             // Patch Shockbomb
-            if (program.shockbombDict.Any(bomb =>
-                isValidObject(program, bomb, myObject, type, "ShockBomb")))
+            if (Program.shockbombDict.Any(bomb =>
+                isValidObject(bomb, myObject, type, "ShockBomb")))
             {
                 addDestruction(myObject);
                 if (myObject?.Destructible?.Stages.Count == 8)
@@ -807,8 +818,8 @@ namespace ThrowingStuffVRPatcher
             }
 
             // Patch Poisonbomb
-            if (program.poisonbombDict.Any(bomb =>
-                isValidObject(program, bomb, myObject, type, "PoisonBomb")))
+            if (Program.poisonbombDict.Any(bomb =>
+                isValidObject(bomb, myObject, type, "PoisonBomb")))
             {
                 addDestruction(myObject);
                 if (myObject?.Destructible?.Stages.Count == 8)
@@ -824,8 +835,8 @@ namespace ThrowingStuffVRPatcher
             }
 
             // Patch Potion
-            if (program.potionDict.Any(potion =>
-                isValidObject(program, potion, myObject, type, "isPotion")))
+            if (Program.potionDict.Any(potion =>
+                isValidObject(potion, myObject, type, "isPotion")))
             {
                 addDestruction(myObject);
                 if (myObject?.Destructible?.Stages.Count == 8)
@@ -841,8 +852,8 @@ namespace ThrowingStuffVRPatcher
             }
 
             // Patch Poison
-            if (program.poisonDict.Any(poison =>
-                isValidObject(program, poison, myObject, type, "IsPoison")))
+            if (Program.poisonDict.Any(poison =>
+                isValidObject(poison, myObject, type, "IsPoison")))
             {
                 addDestruction(myObject);
                 if (myObject?.Destructible?.Stages.Count == 8)
@@ -858,17 +869,19 @@ namespace ThrowingStuffVRPatcher
             }
         }
 
-        static bool isValidObject(Program program, KeyValuePair<string, string> entry, dynamic myObject, string type, string section)
+        static bool isValidObject(KeyValuePair<string, string> entry, dynamic myObject, string type, string section)
         {
             if (myObject?.Name?.String != null)
             {
-                if (program.exclusionsDict.TryGetValue(myObject?.Name.String?.ToLower(), out string exclusionType))
+                if (Program.exclusionsDict.TryGetValue(myObject?.Name.String?.ToLower(), out string exclusionType))
                 {
                     return myObject?.Name?.String != null && (myObject?.Name.String.ToLower().Contains(Regex.Replace(entry.Key.ToLower(), "-|\\+|\\*", "")) && entry.Key.Contains("*") || (entry.Key.ToLower().Equals(myObject?.Name.String.ToLower()))) && entry.Value.Equals(type)
-                    && !(program.exclusionsDict.ContainsKey(myObject?.Name.String.ToLower()) && exclusionType == section);
+                    && !(Program.exclusionsDict.ContainsKey(myObject?.Name.String.ToLower()) && exclusionType == section);
                 }
             }
-            return myObject?.Name?.String != null && (myObject?.Name.String.ToLower().Contains(Regex.Replace(entry.Key.ToLower(), "-|\\+|\\*", "")) && entry.Key.Contains("*") || (entry.Key.ToLower().Equals(myObject?.Name.String.ToLower()))) && entry.Value.Equals(type);
+            return myObject?.Name?.String != null && 
+                (myObject?.Name.String.ToLower().Contains(Regex.Replace(entry.Key.ToLower(), "-|\\+|\\*", "")) && entry.Key.Contains("*") || entry.Key.ToLower().Equals(myObject?.Name.String.ToLower())) && 
+                entry.Value.Equals(type);
         }
     }
 }
